@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darsh Store</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- View: Login and Signup -->
+    <div id="js_authView">
+        <div class="css_container" id="js_container">
+            <div class="css_form-container css_sign-up-container">
+                <form id="js_signupForm">
+                    <h1>Create Account</h1>
+                    <span>Use your username for registration</span>
+                    <input type="text" id="js_signupUser" placeholder="Username" >
+                    <input type="password" id="js_signupPass" placeholder="password" >
+                    <p class="css_error-msg" id="js_signupError"></p>
+                    <p class="css_success-msg" id="js_signupSuccess"></p>
+                    <button type="button" id="js_signupBtnAction">Sign Up</button>
+                </form>
+            </div>
+            <div class="css_form-container css_sign-in-container">
+                <form id="js_loginForm">
+                    <h1>Sign In</h1>
+                    <span>Use your account</span>
+                    <input type="text" id="js_loginUser" placeholder="Username">
+                    <input type="password" id="js_loginPass" placeholder="Password">
+                    <p class="css_error-msg" id="js_loginError"></p>
+                    <button type="button" id="js_loginBtnAction">Sign In</button>
+                </form>
+            </div>
+            <div class="css_overlay-container">
+                <div class="css_overlay">
+                    <div class="css_overlay-panel css_overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="css_ghost" id="js_signInToggle">Sign In</button>
+                    </div>
+                    <div class="css_overlay-panel css_overlay-right">
+                        <h1>Hello!</h1>
+                        <p>Enter your details and start your journey with us</p>
+                        <button class="css_ghost" id="js_signUpToggle">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Store View: Products, Cart, Reviews -->
+    <div id="js_storeView" style="display: none;">
+
+        <nav class="css_navbar">
+            <div class="css_nav-left">
+                <h2>
+                    DARSH STORE<br>
+                    <span>random shop</span>
+                </h2>
+                <button id="js_adminBtn" class="css_admin-btn">Admin Panel</button>
+            </div>
+            <div class="css_nav-center">
+                <input type="text"  placeholder="Search Products... " class="css_search-bar" id="js_searchInput">
+            </div>
+            <div  class="css_nav-right">
+                <span id="js_userNameDisplay" style="cursor: pointer;">Account</span>
+                <div  class="css_cart-summary" id="js_cartIcon" style="cursor: pointer;">
+                    Shopping Cart (<span id="js_navCartCount">0</span> items) | Total: $<span id="js_navCartTotal"
+                    style="color: #4ade80;">0.00</span> 🛒
+                </div>
+                <button id="js_logoutBtn" class="css_logout-btn" style="margin-left: 15px;">Logout</button>
+            </div>
+        </nav>
+
+        <main class="css_store-content">
+            <!-- Product Catalog -->
+            <div class="css_products-grid" id="js_productsGrid"></div>   
+        </main>
+    </div>
+
+    <!-- Cart Side Panel (Global) -->
+    <div class="css_cart-overlay" id="js_cartOverlay"></div>
+
+    <div class="css_cart-panel" id="js_cartPanel">
+        <div class="css_cart-header">
+            <h2>Your Cart</h2>
+            <button id="js_closeCartBtn" class="css_close-cart">✕</button>
+        </div>
+
+        <div class="css_cart-items" id="js_cartItems">
+            <!-- Cart Items generated here -->
+        </div>
+
+        <div class="css_cart-footer">
+            <h3>Total: $<span id="js_cartTotal">0</span></h3>
+            <button id="js_checkoutBtn" class="css_checkout-btn">Checkout</button>
+            <p id="js_checkoutMsg" ></p>
+        </div>
+    </div>
+
+    <!-- Profile View -->
+    <div id="js_profileView" style="display: none;">
+
+        <nav class="css_navbar">
+            <div class="css_nav-left">
+                <h2>Profile</h2>
+            </div>
+            <div class="css_nav-right">
+                <button id="js_backToStoreBtn" class="css_logout-btn">Back to Store</button>
+            </div>
+        </nav>
+
+        <div class="css_profile-container">
+
+            <div class="css_profile-card">
+                <div class="css_profile-avatar">👤</div>
+                <h2 id="js_profileUsername">User</h2>
+                <p>Role: <span id="js_profileRole" class="css_profile-role">user</span></p>
+                <div class="css_profile-stats">
+                    <p>Total Items in Cart: <span id="js_profileCartCount">0</span></p>
+                </div>
+            </div>
+
+            <div class="css_history-card">
+                <h2 class="css_history-title">Recent Transactions</h2>
+                <div class="css_history-list" id="js_orderHistoryList">
+                    <p style="color: #94a3b8;">No transactions found.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail View -->
+    <div id="js_productDetailView" style="display: none;">
+        <nav class="css_navbar">
+            <div class="css_nav-left">
+                <h2 style="color: #4ade80; margin: 0; line-height: 1.2;">CYBAR SECURE STORE<br><span
+                        style="font-size: 14px; color: #e2e8f0; font-weight: normal;">(E-Shop Simulator)</span></h2>
+            </div>
+            <div class="css_nav-right" style="font-size: 14px; display: flex; align-items: center; gap: 20px;">
+                <span id="js_detailUserNameDisplay" style="cursor: pointer;">Account</span>
+                <div class="css_cart-summary" id="js_detailCartIcon" style="cursor: pointer;">
+                    Shopping Cart (<span id="js_detailNavCartCount">0</span> items) | Total: $<span id="js_detailNavCartTotal"
+                        style="color: #4ade80;">0.00</span> 🛒
+                </div>
+                <button id="js_backFromDetailBtn" class="css_logout-btn">Back to Store</button>
+            </div>
+        </nav>
+        <div class="css_detail-container">
+            <div class="css_detail-left">
+                <div id="js_detailImage" class="css_detail-img"></div>
+            </div>
+            <div class="css_detail-right">
+                <h1 id="js_detailTitle" class="css_detailTitle"></h1>
+                <div class="css_stars" id="js_detailStars"></div>
+                <div id="js_detailDesc" class="css_detailDesc"></div>
+                <h2 id="js_detailPrice" data-price="0" class="css_detailPrice"></h2>
+                <div class="css_detail-action-bar">
+                    <div class="css_qty-wrapper">
+                        <button class="css_qty-btn" onclick="decreaseQty('js_detailQty')">-</button>
+                        <input type="number" id="js_detailQty" class="css_qty-input" value="1" min="1" style="background:#111216;">
+                        <button class="css_qty-btn" onclick="increaseQty('js_detailQty')">+</button>
+                    </div>
+                    <button id="js_detailAddToCart" class="css_add-cart-btn css_detailAddToCart">ADD TO CART</button>
+                </div>
+            <!-- Product Reviews Section -->
+             <div class="css_reviews-section css_reviews-section-dark">
+                <h3>User Reviews</h3>
+                <div id="js_productReviewsList" class="css_reviews-list-scroll">
+                    <!-- Reviews go here -->
+                </div>
+                <div class="css_add-review">
+                    <span class="css_rating-label">Rating</span>
+                    <select id="js_reviewRatingSelect">
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="1">⭐</option>
+                    </select>
+                    <textarea id="js_reviewText" placeholder="Write your review here..."></textarea>
+                    <button type="button" id="js_submitReviewBtn" class="css_add-cart-btn css_btn-auto">SUBMIT REVIEW</button>
+                </div>
+             </div>
+            </div>
+        </div>
+    </div>
+
+  
+
+    <!-- Toast Message -->
+    <div id="js_toastMessage" class="css_toast"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
